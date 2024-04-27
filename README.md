@@ -38,6 +38,8 @@ _MIT License: Copyright (c) 2024- Andrew Blais_
 
 ### Future Updates
 
+- Improve 'Night Light' method to be more universal and modular for other use cases.
+
 - Provide functionality to utilize across Linux and Mac as well.
 
 - Clarify and improve math and algorithms involved in determining different and best screen coordinates for app windows.
