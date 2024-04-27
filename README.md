@@ -30,6 +30,12 @@ _MIT License: Copyright (c) 2024- Andrew Blais_
 
 ---
 
+### Recent Updates
+
+- 04/27/24: Add functionality to modify Windows 'Night Light' setting.
+
+---
+
 ### Future Updates
 
 - Provide functionality to utilize across Linux and Mac as well.

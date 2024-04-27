@@ -8,8 +8,17 @@ class OpenAndAlign:
     """
     A class to automate the process of opening an application and aligning its window.
 
+    Arguments:
     :param app_name: The name of the application to open via the Start Menu.
     :type app_name: str
+    :param night_light_window: Whether the opened app is a Windows Night Light.
+                               Defaults to False.
+    :type night_light_window: bool
+    :param settings_val_01: Number or string to enter into opened Settings dialog.
+    :type settings_val_01: int | str
+    :param app_relocate: Whether or not to move the app window from initial position.
+                         Defaults to False.
+    :type app_relocate: bool
     :param image_file_name: The file name of the image to be located on the screen.
                             User creates and stores this image file in the 'static'
                             project folder.
@@ -22,8 +31,17 @@ class OpenAndAlign:
     :param confidence: The confidence threshold for image recognition. Defaults to 0.9.
     :type confidence: float, optional
 
+    Attributes:
     :ivar app_name: The name of the application to open via the Start Menu.
     :type app_name: str
+    :ivar night_light_window: Whether the opened app is a Windows Night Light.
+                              Defaults to False.
+    :type night_light_window: bool
+    :ivar settings_val_01: Number or string to enter into opened Settings dialog.
+    :type settings_val_01: int | str
+    :ivar app_relocate: Whether or not to move the app window from initial position.
+                        Defaults to False.
+    :type app_relocate: bool
     :ivar image_file_name: The file name of the image to be located on the screen.
                            User creates and stores this image file in the 'static'
                            project folder.
@@ -49,11 +67,17 @@ class OpenAndAlign:
 
     def __init__(self,
                  app_name: str,
-                 image_file_name: str,
+                 night_light_window: bool = False,
+                 settings_val_01: int = 10,
+                 app_relocate: bool = False,
+                 image_file_name: str = "",
                  desired_win_loc: list = [0, 0],  # noqa
                  align_right: bool = False,
                  confidence: float = .9):
         self.app_name = app_name
+        self.night_light_window = night_light_window
+        self.settings_val_01 = settings_val_01
+        self.app_relocate = app_relocate
         self.image_file_name = image_file_name
         self.desired_win_loc = desired_win_loc
         self.align_right = align_right
@@ -125,6 +149,22 @@ class OpenAndAlign:
         except (Exception,) as e:
             self.error_handling(e)
 
+    def night_light_change(self) -> None:
+        """
+        Tabs, slides, etc... within a Settings dialog and adjusts its settings.
+
+        :return: None
+        """
+        if self.night_light_window:
+            time.sleep(2)
+            pg.press('tab')  # Tabs to Night Light value slider
+            time.sleep(1)
+            pg.press('left', presses=100)  # Resets slider to 0
+            time.sleep(1)
+            pg.press('right', presses=self.settings_val_01)  # Moves slider to desired val
+            time.sleep(1)
+            pg.hotkey('alt', 'f4')  # Closes Settings window
+
     def right_move(self) -> int:
         """
         Adjusts values based on window width so window will be snug against right
@@ -169,10 +209,13 @@ class OpenAndAlign:
         try:
             self.screen_w_val()
             self.app_open(self.app_name)
-            self.app_locate(self.image_file_name)
-            if self.align_right:
-                self.desired_win_loc[0] += self.right_move()
-            self.app_drag(self.desired_win_loc)
+            if self.night_light_window:
+                self.night_light_change()
+            if self.app_relocate:
+                self.app_locate(self.image_file_name)
+                if self.align_right:
+                    self.desired_win_loc[0] += self.right_move()
+                self.app_drag(self.desired_win_loc)
         except (Exception,) as e:
             self.error_handling(e)
 
@@ -180,12 +223,27 @@ class OpenAndAlign:
 # Instantiate and run for dual Firefox windows in the developers favorite config:
 if __name__ == '__main__':
     try:
-        open_and_align_01 = OpenAndAlign(app_name='firefox',
-                                         image_file_name='firefox_locate.png')
+        firefox_01 = OpenAndAlign(app_name='firefox',
+                                  app_relocate=True,
+                                  image_file_name='firefox_locate.png')
 
-        open_and_align_02 = OpenAndAlign(app_name='firefox',
-                                         image_file_name='firefox_locate.png',
-                                         align_right=True)
+        firefox_02 = OpenAndAlign(app_name='firefox',
+                                  app_relocate=True,
+                                  image_file_name='firefox_locate.png',
+                                  align_right=True)
+
+        # Include after packaging as .exe:
+        # py_charm = OpenAndAlign(app_name='pycharm',
+        #                         app_relocate=False)
+
+        vs_code = OpenAndAlign(app_name='vscode',
+                               app_relocate=False)
+
+        night_light = OpenAndAlign(app_name='night light',
+                                   night_light_window=True,
+                                   settings_val_01=10,
+                                   app_relocate=False)
+
     except (Exception,) as e_:
         print(f"Unexpected error instantiating OpenAndAlign class: {e_}. Exiting...")
         sys.exit(1)
