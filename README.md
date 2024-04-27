@@ -38,6 +38,8 @@ _MIT License: Copyright (c) 2024- Andrew Blais_
 
 ### Future Updates
 
+- Add Tkinter GUI to manage the whole thing!
+
 - Improve 'Night Light' method to be more universal and modular for other use cases.
 
 - Provide functionality to utilize across Linux and Mac as well.
