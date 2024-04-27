@@ -1,4 +1,4 @@
-# OpenAndAlign
+# openAndAlign
 
 A class to automate opening your favorite Windows applications and aligning them on the desktop. Created for
 Professional Portfolio Project: Assignment 17: Angela Yu 100 Days of Code -- "Python Automation: Custom Automation".
@@ -6,6 +6,10 @@ Professional Portfolio Project: Assignment 17: Angela Yu 100 Days of Code -- "Py
 This project is fairly simple and small in scope, but solves very directly and effectively a task which I've been
 seeking to automate for some time now, i.e. opening up my dual Firefox windows to either side of the screen in an exact
 and organized manner. Not a big deal, by any means, but very helpful and fun to watch work.
+
+This is how I like my Firefox windows to be set up:
+
+![Firefox Dual Windows Configuration](static/firefox_dual_windows.jpg)
 
 I've often wondered if there was a way to achieve this kind of functionality via a Firefox extension, but haven't found
 one that opens windows to a pre-ordained configuration with this kind of precision. Perhaps future versions can include
@@ -31,6 +35,8 @@ _MIT License: Copyright (c) 2024- Andrew Blais_
 - Provide functionality to utilize across Linux and Mac as well.
 
 - Clarify and improve math and algorithms involved in determining different and best screen coordinates for app windows.
+
+- Create an executable .exe to run this without opening an IDE.
 
 - more...
 
@@ -210,7 +216,7 @@ maybe it will inspire another student!
 
 ### My Submission:
 
-My project is viewable here: https://lorem.ipsum
+My project is viewable here: https://github.com/andrewblais/OpenAndAlign
 
 ---
 
@@ -220,24 +226,46 @@ My project is viewable here: https://lorem.ipsum
 
 **_Write down how you approached the project._**
 
-Lorem
+The Google Dinosaur automation project gave me the idea to automate the daily opening and aligning of Firefox windows,
+which is a repetitive task that I like to have done in a very particular way.
+
+Here's how I like the windows to be aligned:
+
+![Firefox Dual Windows Configuration](static/firefox_dual_windows.jpg)
+
+This is a repeated activity which I often perform four or five times a day, so although not especially grand or complex
+in nature, it serves a very useful and meaningful purpose to me.
 
 **_What was hard?_**
 
-Lorem
+The math/algorithm which takes into account the user's screen width and adjusts the right-hand window snugly to the
+right side of the screen. I could have hard-coded the values, but wanted the extra challenge to make the code reusable
+and modular for different screen sizes/laptops/desktops.
 
 **_What was easy?_**
 
-Lorem
+What at first was so, so difficult is now almost automatic -- writing a class and its methods and getting the whole
+to work as an efficient, interdependent yet modular and responsive unit.
+
+Also, I've grown quite fond of the ReStructuredText documentation style, and have even fine-tuned and customized it a
+bit. Documentation syntax was also a challenge to understand at first, but its become a lot easier.
 
 **_How might you improve for the next project?_**
 
-Lorem
+I might want to spend more time planning and plotting out my goals and the overall structure before I dive into coding.
+
+I have a tendency to let my creativity get the best of me and sometimes end up overwhelmed by lots and lots of ideas
+are not always as organized as I'd like. This can lead to a period of catch-up, which might be prevented with better
+planning up front.
 
 **_What was your biggest learning from today?_**
 
-Lorem
+Spending more time with PyAutoGUI has been very educational -- the possibilities seem endless...
+
+Also, I learned about a library called `win32gui` from `pywin32`, which has a lot of cool, useful tools.
 
 **_What would you do differently if you were to tackle this project again?_**
 
-Lorem
+Better planning, slower and more methodical development process.
+
+Consider writing the documentation as I go, rather than afterwards.
